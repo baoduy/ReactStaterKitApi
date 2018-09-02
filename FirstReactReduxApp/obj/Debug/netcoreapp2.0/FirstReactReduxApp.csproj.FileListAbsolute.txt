@@ -1,0 +1,11 @@
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/bin/Debug/netcoreapp2.0/FirstReactReduxApp.deps.json
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/bin/Debug/netcoreapp2.0/FirstReactReduxApp.runtimeconfig.json
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/bin/Debug/netcoreapp2.0/FirstReactReduxApp.runtimeconfig.dev.json
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/bin/Debug/netcoreapp2.0/FirstReactReduxApp.dll
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/bin/Debug/netcoreapp2.0/FirstReactReduxApp.pdb
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/obj/Debug/netcoreapp2.0/FirstReactReduxApp.csproj.CoreCompileInputs.cache
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/obj/Debug/netcoreapp2.0/FirstReactReduxApp.AssemblyInfoInputs.cache
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/obj/Debug/netcoreapp2.0/FirstReactReduxApp.AssemblyInfo.cs
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/obj/Debug/netcoreapp2.0/FirstReactReduxApp.dll
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/obj/Debug/netcoreapp2.0/FirstReactReduxApp.pdb
+/Users/tuannguyen/Data/RESEARCH/REACT/Source/FirstReactReduxApp/FirstReactReduxApp/obj/Debug/netcoreapp2.0/FirstReactReduxApp.csprojAssemblyReference.cache
