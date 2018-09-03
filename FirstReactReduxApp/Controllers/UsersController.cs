@@ -8,62 +8,49 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mail;
 using System.Threading;
+using FirstReactReduxApp.Data;
+using FirstReactReduxApp.ViewModels;
 
 namespace FirstReactReduxApp.Controllers
 {
-    public static class DummyData
-    {
-        public static List<UserResponse> Users = new List<UserResponse>{
-            new UserResponse
-            {
-                    Id = 1,
-                    Username="Tuan",
-                FirstName = "Tuan",
-                LastName="Nguyen",
-                Email = "xuantuan93@gmail.com"
-                },
-            new UserResponse
-            {
-                    Id = 2,
-                    Username="Steven",
-                FirstName="Steven",
-                LastName="Hoang",
-                Email = "baoduy2412@outlook.com"
-                }
-            };
-    }
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
+        public ReactStaterKitDbContext context { get; set; }
+
+        public UsersController(ReactStaterKitDbContext context)
+        {
+            this.context = context;
+        }
 
         [HttpGet]
-        public List<UserResponse> Get()
+        public List<User> Get()
         {
-            return DummyData.Users;
+            return context.Users.ToList();
         }
         [HttpGet]
         [Route("{id}")]
-        public UserResponse Get(int id)
+        public User Get(int id)
         {
-            return DummyData.Users.FirstOrDefault(u=>u.Id==id);
+            return context.Users.FirstOrDefault(u=>u.Id==id);
         }
         [HttpGet]
         [Route("IsEmailOrUserNameExist/{usernameOrEmail}/{id}")]
         public bool IsEmailOrUserNameExist(string usernameOrEmail,int id){
             
             if(IsValidEmail(usernameOrEmail)){
-                return DummyData.Users.Exists(e => e.Email.ToLower().Equals(usernameOrEmail.ToLower()) && e.Id!=id);
+                return context.Users.Any(e => e.Email.ToLower().Equals(usernameOrEmail.ToLower()) && e.Id!=id);
             }
-            return DummyData.Users.Exists(e => e.Username.ToLower().Equals(usernameOrEmail.ToLower()) && e.Id != id);
+            return context.Users.Any(e => e.Username.ToLower().Equals(usernameOrEmail.ToLower()) && e.Id != id);
 
         }
 
 
         [HttpPost]
-        public UserResponse Post([FromForm]UserRequest user)
+        public User Post([FromForm]UserRequest user)
         {
 
-            var userUpdated = DummyData.Users.FirstOrDefault(u => u.Id == user.Id);
+            var userUpdated = context.Users.FirstOrDefault(u => u.Id == user.Id);
             var avatar = GetImageByte(user.Avatar);
             if (userUpdated != null)
             {
@@ -74,14 +61,13 @@ namespace FirstReactReduxApp.Controllers
                 if(avatar != null){
                     userUpdated.Avatar = GetImageByte(user.Avatar);
                 }
-                return userUpdated;
 
             }
             else
             {
-                var userResponse = new UserResponse
+                userUpdated =  new User
                 {
-                    Id = DummyData.Users.Count() + 1,
+                    //Id = DummyData.Users.Count() + 1,
                     Username = user.Username,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
@@ -89,11 +75,13 @@ namespace FirstReactReduxApp.Controllers
                 };
                 if (avatar != null)
                 {
-                    userResponse.Avatar = GetImageByte(user.Avatar);
+                    userUpdated.Avatar = GetImageByte(user.Avatar);
                 }
-                DummyData.Users.Add(userResponse);
-                return userResponse;
+                context.Users.Add(userUpdated);
             }
+
+            context.SaveChanges();
+            return userUpdated;
 
         }
 
@@ -101,13 +89,16 @@ namespace FirstReactReduxApp.Controllers
         [Route("{id}")] 
         public bool Delete(int id)
         {
-            var user = DummyData.Users.FirstOrDefault(u => u.Id == id);
+            var user = context.Users.FirstOrDefault(u => u.Id == id);
             if (user == null)
             {
                 return false;
             }
 
-            return DummyData.Users.Remove(user);
+            context.Users.Remove(user);
+            context.SaveChanges();
+            
+            return true;
         }
 
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
-namespace FirstReactReduxApp.Models
+namespace FirstReactReduxApp.ViewModels
 {
     public class UserRequest
     {
